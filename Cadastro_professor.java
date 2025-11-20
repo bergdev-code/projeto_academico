@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -21,6 +22,42 @@ class Professor {
 }
 
 public class Cadastro_professor {
+    
+    // função para armazenar os valores de uc e puxar para outro arquivo através
+    // dos getters
+    public static ArrayList<String> getUcProfessor() {
+        ArrayList<String> listaUc = new ArrayList<>();
+
+        for (Professor p : professores.values()) {
+            listaUc.add(p.uc);
+        }
+
+        return listaUc; 
+    }
+
+    // função para armazenar os valores de curso e puxar para outro arquivo através
+    // dos getters
+    public static ArrayList<String> getCursosProfessores() {
+        ArrayList<String> listaCursos = new ArrayList<>();
+
+        for (Professor p : professores.values()) {
+            listaCursos.add(p.curso);
+        }
+
+        return listaCursos;
+    }
+
+    // Função para armazenar os valores de nome e puxar para outro arquivo atráves
+    // dos getters
+    public static java.util.ArrayList<String> getNomesProfessores() {
+        java.util.ArrayList<String> listaNomes = new java.util.ArrayList<>();
+
+        for (Professor p : professores.values()) {
+            listaNomes.add(p.nome);
+        }
+
+        return listaNomes;
+    }
 
     private static Map<Integer, Professor> professores = new HashMap<>();
 

@@ -1,8 +1,20 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
 public class Cadastro_curso {
+
+     // Getter para listar todos os cursos cadastrados
+    public static ArrayList<String> getCurso() {
+        ArrayList<String> listaCurso = new ArrayList<>();
+
+        for (String nomeCurso : cursos.values()) {
+            listaCurso.add(nomeCurso);
+        }
+
+        return listaCurso;
+    }
 
     private static Map<Integer, String> cursos = new HashMap<>();
 

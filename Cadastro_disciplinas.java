@@ -7,7 +7,19 @@ public class Cadastro_disciplinas {
     private static ArrayList<String> array_nome_disciplina = new ArrayList<>();
     private static int codigo_disciplinas = 0;
 
+    // Getter para listar todos os cursos escolhidos pelos alunos
+    public static ArrayList<String> getUcDisciplinas(){
+    ArrayList<String> lista = new ArrayList<>();
+
+    for (String nome : array_nome_disciplina) {
+        lista.add(nome);
+    }
+
+    return lista;
+}
+
     public static void cadastrar_disciplinas() {
+
         Scanner scam_disciplina = new Scanner(System.in);
         boolean continuar = true;
 

@@ -2,17 +2,44 @@
 // Cadastro_de_Notas.java - Michelle
 import java.util.ArrayList; // importa ArrayList para armazenar listas
 import java.util.HashMap; // importa HashMap para mapear IDs -> alunos
+import java.util.HashSet;
 import java.util.Scanner; // importa Scanner para ler entrada do usuário
 
 public class Cadastro_notas { // classe pública principal do arquivo
+    
+    public static ArrayList<String> getUC() {
+    ArrayList<String> listaUC = new ArrayList<>();
+
+    // passa por todos os alunos cadastrados
+    for (Aluno aluno : banco.listar()) {
+
+        // pega todas as disciplinas de cada aluno
+        for (Disciplina d : aluno.getDisciplinas()) {
+
+            // adiciona somente se ainda não existir na lista
+            if (!listaUC.contains(d.getNome())) {
+                listaUC.add(d.getNome());
+            }
+        }
+    }
+
+    return listaUC;
+}
+
+
+    
 
     static BancoNotas banco = new BancoNotas(); // nosso "banco" de alunos
+    
+    public static ArrayList<Aluno> getAlunos() { //função para armazenar os nomes dos alunos para puxar  paara outro código
+        return banco.listar();
+    }
 
     // ------------------- CLASSE Disciplina --------------------
     static class Disciplina { // representa uma disciplina com várias notas
         private String nome; // nome da disciplina
         private ArrayList<Double> notas = new ArrayList<>(); // notas dessa disciplina
-
+        
         public Disciplina(String nome) { // construtor com nome da disciplina
             this.nome = nome;
         }
@@ -50,13 +77,14 @@ public class Cadastro_notas { // classe pública principal do arquivo
     }
 
     // ------------------- CLASSE Aluno --------------------
-    static class Aluno { // representa um aluno que tem várias disciplinas
+    public static class Aluno { // representa um aluno que tem várias disciplinas
         private String nome; // nome do aluno
         private ArrayList<Disciplina> disciplinas = new ArrayList<>(); // disciplinas do aluno
 
         public Aluno(String nome) { // construtor com nome
             this.nome = nome;
         }
+
 
         public String getNome() {
             return nome;

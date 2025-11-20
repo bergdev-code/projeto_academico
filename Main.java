@@ -23,6 +23,7 @@ public class Main {
                 case 2:
                     System.out.println("AGUARDE...");
                     Thread.sleep(1500);
+                    Relatorio.gerar_relatorio();
                     break;
                     
                 case 3:
