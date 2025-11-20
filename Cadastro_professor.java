@@ -96,7 +96,7 @@ public class Cadastro_professor {
                     Professor prof = new Professor(nome, curso, uc);
                     professores.put(vinculacao, prof);
 
-                    System.out.println("professor cadastrado com sucesso!");
+                    System.out.println("\n=== PROFESSOR CADASTRADSO COM SUCESSO! ===");
 
                     String opcao_aluno = Confirmar_saida.saida();
 
@@ -104,36 +104,36 @@ public class Cadastro_professor {
                     } else if (opcao_aluno.equalsIgnoreCase("s")) {
                         op = 0;
                     } else {
-                        System.out.println("Insira um caractere válido!");
+                        System.out.println("\n === INSIRA UM CARACTERE VÁLIDO ===");
                     }
 
                     break;
 
                 // pesquisa de professor
                 case 2:
-                    System.out.println("\n==={LISTA DE PROFESSORES}===");
+                    System.out.println("\n==={ LISTA DE PROFESSORES }===");
                     if (professores.isEmpty()) {
-                        System.out.println("Nenhum Professor cadastrado.");
+                        System.out.println("--- NENHUM PROFESSOR CADASTRADO ---");
                     } else {
                         for (Map.Entry<Integer, Professor> entry : professores.entrySet()) {
                             int codigo = entry.getKey();
                             Professor p = entry.getValue();
                             System.out.println("================================");
-                            System.out.println("Cod. de Vinculação: " + codigo);
-                            System.out.println("Nome: " + p.nome);
-                            System.out.println("Curso: " + p.curso);
-                            System.out.println("UC: " + p.uc);
+                            System.out.println(" | Cod. de Vinculação: " + codigo);
+                            System.out.println(" | Nome: " + p.nome);
+                            System.out.println(" | Curso: " + p.curso);
+                            System.out.println(" | UC: " + p.uc);
                         }
                         System.out.println("===============================");
                     }
                     break;
 
                 case 0:
-                    System.out.println("Encerrando o sistema...");
+                    System.out.println("\nENCERRANDO O SISTEMA...");
                     break;
 
                 default:
-                    System.out.println("Opção inválida!");
+                    System.out.println("\n=== OPÇÃO INVÁLIDA ===");
                     break;
             }
         } while (op != 0);

@@ -25,7 +25,7 @@ public class Cadastro_disciplinas {
 
         while (continuar) {
             System.out.print(
-                    "---CADASTRAR DISCIPLINAS---\n" +
+                    "=== CADASTRAR DISCIPLINAS ===\n" +
                             "1 - Cadastrar disciplinas\n" +
                             "2 - Listar disciplinas\n" +
                             "3 - Remover disciplinas\n" +
@@ -42,7 +42,7 @@ public class Cadastro_disciplinas {
                         codigo_disciplinas++;
                         array_nome_disciplina.add(nome_disciplina);
                         array_codigo_disciplina.add(codigo_disciplinas);
-                        System.out.println("Dados adicionados com sucesso!");
+                        System.out.println("\n--- DADOS ADICIONADOS COM SUCESSO! ---");
 
                         String opcao_disciplinas = Confirmar_saida.saida();
 
@@ -50,10 +50,10 @@ public class Cadastro_disciplinas {
                         } else if (opcao_disciplinas.equalsIgnoreCase("s")) {
                             continuar = false;
                         } else {
-                            System.out.println("Insira um caractere válido!");
+                            System.out.println("\n === INSIRA ALGUM CARACTERE VÁLIDO ===");
                         }
                     } else {
-                        System.out.println("Insira alguma disciplina!");
+                        System.out.println("\n === INSIRA ALGUMA DISCIPLINA ===");
                     }
                     break;
 
@@ -67,7 +67,7 @@ public class Cadastro_disciplinas {
                                             array_nome_disciplina.get(i)));
                         }
                     } else {
-                        System.out.println("NENHUMA DISCIPLINA CADASTRADA!");
+                        System.out.println("\n === NENHUMA DISCIPLINA CADASTRADA! ===");
                     }
                     System.out.println();
                     break;
@@ -95,17 +95,17 @@ public class Cadastro_disciplinas {
                                 }
                                 codigo_disciplinas = array_nome_disciplina.size();
 
-                                System.out.println("DADOS EXCLUÍDOS COM SUCESSO!");
+                                System.out.println("\n === DADOS EXCLUÍDOS COM SUCESSO! ===");
 
                                 String opcao_disciplinas = Confirmar_saida.saida();
                                 if (opcao_disciplinas.equalsIgnoreCase("n")) {
                                 } else if (opcao_disciplinas.equalsIgnoreCase("s")) {
                                     continuar = false;
                                 } else {
-                                    System.out.println("Insira um caractere válido!");
+                                    System.out.println("\n === INSIRA ALGUM CARACTERE VÁLIDO ===");
                                 }
                             } else {
-                                System.out.println("Código inválido!");
+                                System.out.println("\n --- CÓDIGO INVÁLIDO ---");
                             }
                             break;
 
@@ -122,32 +122,32 @@ public class Cadastro_disciplinas {
                                 }
                                 codigo_disciplinas = array_nome_disciplina.size();
 
-                                System.out.println("DADOS EXCLUÍDOS COM SUCESSO!");
+                                System.out.println("\n === DADOS EXCLUÍDOS COM SUCESSO! ===");
                                 String opcao_disciplinas = Confirmar_saida.saida();
                                 if (opcao_disciplinas.equalsIgnoreCase("n")) {
                                 } else if (opcao_disciplinas.equalsIgnoreCase("s")) {
                                     continuar = false;
                                 } else {
-                                    System.out.println("Insira um caractere válido!");
+                                    System.out.println("\n === INSIRA UM CARACTERE VÁLIDO ===");
                                 }
                             } else {
-                                System.out.println("Nome inválido!");
+                                System.out.println("\n=== NOME INVÁLIDO! ===");
                             }
                             break;
 
                         default:
-                            System.out.println("Opção inválida!");
+                            System.out.println("\n === OPÇÃO INVÁLIDA! ===");
                             break;
                     }
                     break;
 
                 case 4:
-                    System.out.println("Saindo...");
+                    System.out.println("SAINDO...");
                     continuar = false;
                     break;
 
                 default:
-                    System.out.println("Opção inválida!");
+                    System.out.println("\n === OPÇÃO INVÁLIDA ===!");
                     break;
             }
         }

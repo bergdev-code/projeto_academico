@@ -1,9 +1,43 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Cadastro_aluno {
 
     private static int id_matricula = 0;
+
+    public static void relatorioAlunosPorCurso() {
+
+        
+
+    if (alunos.isEmpty()) {
+        System.out.println("Nenhum aluno cadastrado.");
+        return;
+    }
+
+    System.out.println("\n--- RELATÓRIO: Alunos por Curso ---");
+
+    // Mapa curso -> lista de alunos
+    HashMap<String, ArrayList<String>> mapa = new HashMap<>();
+
+    for (Aluno a : alunos) {
+        // verifica se o curso já existe no mapa
+        if (!mapa.containsKey(a.getCurso())) {
+            mapa.put(a.getCurso(), new ArrayList<>()); // cria lista vazia se não existir
+        }
+        // adiciona o aluno à lista do curso
+        mapa.get(a.getCurso()).add(a.getNome());
+    }
+
+    // imprimir
+    for (String curso : mapa.keySet()) {
+        System.out.println("\nCurso: " + curso);
+        for (String nomeAluno : mapa.get(curso)) {
+            System.out.println(" - " + nomeAluno);
+        }
+    }
+}
+
 
      // Getter para listar todos os cursos escolhidos pelos alunos
     public static ArrayList<String> getCursoAluno() {
@@ -72,4 +106,13 @@ public class Cadastro_aluno {
 
         return lista;
     }
+
+    public static String getCursoPorNome(String nome) {
+    for (Aluno a : alunos) {
+        if (a.getNome().equalsIgnoreCase(nome)) {
+            return a.getCurso();
+        }
+    }
+    return null;
+}
 }

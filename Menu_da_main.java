@@ -5,10 +5,8 @@ public class Menu_da_main {
         Scanner scam_menu = new Scanner(System.in);
         boolean ficar = true;
 
-        Cadastro_aluno cadastrar_aluno = new Cadastro_aluno();
-
         System.out.println("Seja bem vindo!");
-        do {
+        while(ficar) {
             System.out.print(
                     "[-/-/-/-MENU DE CADASTROS-/-/-/-]\n1 - Cadastrar Cursos\n2 - Cadastrar Disciplinas\n3 - Cadastrar Professores\n4 - Cadastrar Alunos\n5 - Cadastrar Notas\n6 - Retornar ao Menu inicial\nValor: ");
             int valor_menu = scam_menu.nextInt();
@@ -41,13 +39,12 @@ public class Menu_da_main {
                 case 6:
                     System.out.println("Retornando...");
                     Thread.sleep(1500);
-                    Main.main(null);
+                    ficar = false;
                     break;
                 default:
                     System.out.println("Insira um valor válido!");
                     break;
             }
-        } while (ficar);
-        scam_menu.close();
+        }
     }
 }
