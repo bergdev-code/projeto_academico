@@ -5,40 +5,39 @@ public class Menu_da_main {
         Scanner scam_menu = new Scanner(System.in);
         boolean ficar = true;
 
-        System.out.println("Seja bem vindo!");
-        while(ficar) {
+        while (ficar) {
             System.out.print(
                     "[-/-/-/-MENU DE CADASTROS-/-/-/-]\n1 - Cadastrar Cursos\n2 - Cadastrar Disciplinas\n3 - Cadastrar Professores\n4 - Cadastrar Alunos\n5 - Cadastrar Notas\n6 - Retornar ao Menu inicial\nValor: ");
             int valor_menu = scam_menu.nextInt();
             switch (valor_menu) {
                 case 1:
                     System.out.println("Iniciando...");
-                    Thread.sleep(1500);
+                    Thread.sleep(1000);
                     Cadastro_curso.cadastrar_curso();
                     break;
                 case 2:
                     System.out.println("Iniciando...");
-                    Thread.sleep(1500);
+                    Thread.sleep(1000);
                     Cadastro_disciplinas.cadastrar_disciplinas();
                     break;
                 case 3:
                     System.out.println("Iniciando...");
-                    Thread.sleep(1500);
+                    Thread.sleep(1000);
                     Cadastro_professor.cadastrar_professor();
                     break;
                 case 4:
                     System.out.println("Iniciando...");
-                    Thread.sleep(1500);
+                    Thread.sleep(1000);
                     Cadastro_aluno.cadastrar_aluno();
                     break;
                 case 5:
                     System.out.println("Iniciando...");
-                    Thread.sleep(1500);
+                    Thread.sleep(1000);
                     Cadastro_notas.cadastrar_notas();
                     break;
                 case 6:
                     System.out.println("Retornando...");
-                    Thread.sleep(1500);
+                    Thread.sleep(1000);
                     ficar = false;
                     break;
                 default:

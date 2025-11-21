@@ -16,16 +16,14 @@ public class BancoCursos {
         cursosUnificados.addAll(cursosAluno);
 
         System.out.println("\n=== CURSOS CADASTRADOS ===");
-        for (String curso : cursosUnificados) {
-            System.out.println("- " + curso);
-        }
 
         if (cursosUnificados.isEmpty()) {
-            System.out.println("NENHUM CURSO CADASTRADO!");
-        } else {
-            for (String curso : cursosUnificados) {
-                System.out.println("- " + curso);
-            }
+            System.out.println("\nNENHUM CURSO CADASTRADO!");
+            return;
+        }
+
+        for (String curso : cursosUnificados) {
+            System.out.println("- " + curso);
         }
     }
 }

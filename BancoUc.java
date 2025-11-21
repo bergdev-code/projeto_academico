@@ -3,7 +3,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class BancoUc {
-    public static void gerar_uc(){
+    public static void gerar_uc() {
 
         ArrayList<String> UcDisciplinas = Cadastro_disciplinas.getUcDisciplinas();
         ArrayList<String> UcProf = Cadastro_professor.getUcProfessor();
@@ -16,16 +16,14 @@ public class BancoUc {
         UcUnificados.addAll(UcNotas);
 
         System.out.println("\n=== DISCIPLINAS CADASTRADAS ===");
-        for (String uc : UcUnificados) {
-            System.out.println("- " + uc);
-        }
 
         if (UcUnificados.isEmpty()) {
-            System.out.println("NENHUMA DISCIPLINA CADASTRADA!");
-        } else {
-            for (String disc : UcUnificados) {
-                System.out.println("- " + disc);
-            }
+            System.out.println("\nNENHUMA DISCIPLINA CADASTRADA!");
+            return;
+        }
+
+        for (String uc : UcUnificados) {
+            System.out.println("- " + uc);
         }
     }
 }

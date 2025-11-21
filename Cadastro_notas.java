@@ -6,12 +6,13 @@ import java.util.Scanner; // importa Scanner para ler entrada do usuário
 
 public class Cadastro_notas { // classe pública principal do arquivo
 
-    public static void relatorioAlunosPorUC() {
-        
+    public static void relatorioAlunosPorUC() throws InterruptedException {
+
         ArrayList<Aluno> lista = banco.listar();
-        
+
         if (lista.isEmpty()) {
             System.out.println("\n=== NENHUM ALUNO CADASTRADO NO SISTEMA DE NOTAS ===");
+            Thread.sleep(1000);
             return;
         }
 
@@ -32,7 +33,7 @@ public class Cadastro_notas { // classe pública principal do arquivo
                 mapa.get(d.getNome()).add(aluno.getNome());
             }
         }
-        
+
         // imprimir
         for (String uc : mapa.keySet()) {
             System.out.println("\nDisciplina: " + uc);
@@ -41,13 +42,13 @@ public class Cadastro_notas { // classe pública principal do arquivo
             }
         }
     }
-    
+
     public static ArrayList<String> getUC() {
         ArrayList<String> listaUC = new ArrayList<>();
-        
+
         // passa por todos os alunos cadastrados
         for (Aluno aluno : banco.listar()) {
-            
+
             // pega todas as disciplinas de cada aluno
             for (Disciplina d : aluno.getDisciplinas()) {
 
@@ -57,26 +58,26 @@ public class Cadastro_notas { // classe pública principal do arquivo
                 }
             }
         }
-        
+
         return listaUC;
     }
-    
+
     static BancoNotas banco = new BancoNotas(); // nosso "banco" de alunos
-    
+
     public static ArrayList<Aluno> getAlunos() { // função para armazenar os nomes dos alunos para puxar paara outro
         // código
         return banco.listar();
     }
-    
+
     // ------------------- CLASSE Disciplina --------------------
     static class Disciplina { // representa uma disciplina com várias notas
         private String nome; // nome da disciplina
         private ArrayList<Double> notas = new ArrayList<>(); // notas dessa disciplina
-        
+
         public Disciplina(String nome) { // construtor com nome da disciplina
             this.nome = nome;
         }
-        
+
         public String getNome() {
             return nome;
         }
@@ -85,14 +86,14 @@ public class Cadastro_notas { // classe pública principal do arquivo
         public void adicionarNota(double nota) {
             notas.add(nota);
         }
-        
+
         // substitui uma nota em um índice específico
         public void setNota(int indice, double nota) {
             if (indice >= 0 && indice < notas.size()) {
                 notas.set(indice, nota);
             }
         }
-        
+
         // retorna a lista de notas (para exibir ou editar)
         public ArrayList<Double> getNotas() {
             return notas;
@@ -108,20 +109,31 @@ public class Cadastro_notas { // classe pública principal do arquivo
             return soma / notas.size();
         }
     }
-    
+
     // ------------------- CLASSE Aluno --------------------
-    public static class Aluno { // representa um aluno que tem várias disciplinas
-        private String nome; // nome do aluno
-        private ArrayList<Disciplina> disciplinas = new ArrayList<>(); // disciplinas do aluno
-        
-        public Aluno(String nome) { // construtor com nome
+    public static class Aluno {
+
+        String nome;
+        String curso;
+        ArrayList<Disciplina> disciplinas = new ArrayList<>();
+
+        public Aluno(String nome) {
             this.nome = nome;
         }
-        
+
+        public Aluno(String nome, String curso) {
+            this.nome = nome;
+            this.curso = curso;
+        }
+
+        public String getCurso() {
+            return curso;
+        }
+
         public String getNome() {
             return nome;
         }
-        
+
         public ArrayList<Disciplina> getDisciplinas() {
             return disciplinas;
         }
@@ -153,7 +165,6 @@ public class Cadastro_notas { // classe pública principal do arquivo
             }
             return somaMedias / disciplinas.size();
         }
-
 
         // retorna índices das disciplinas cuja média < 7.0
         public ArrayList<Integer> indicesDisciplinasInsuficientes() {
@@ -201,14 +212,14 @@ public class Cadastro_notas { // classe pública principal do arquivo
     }
 
     // ------------------- MÉTODO principal --------------------
-    public static void cadastrar_notas() {
+    public static void cadastrar_notas() throws InterruptedException {
 
         Scanner scam_notas = new Scanner(System.in); // Scanner para a entrada
         int op = 0;
 
         while (op != 5) {
 
-            System.out.println("\n=== CADASTRO DE NOTAS ===");
+            System.out.println("\n==={ CADASTRO DE NOTAS }===");
             System.out.println("1 - Cadastrar nota (adicionar disciplina/avaliacoes a um aluno)");
             System.out.println("2 - Listar boletim de um aluno (médias por disciplina e média geral)");
             System.out.println("3 - Listar todos os alunos (com IDs)");
@@ -221,16 +232,22 @@ public class Cadastro_notas { // classe pública principal do arquivo
             switch (op) {
 
                 case 1: // cadastrar nota (se o aluno não existir, cria)
+                    System.out.println("Abrindo cadastro de notas...");
+                    Thread.sleep(1000);
+
                     System.out.print("Nome do aluno: ");
                     String nomeAluno = scam_notas.nextLine();
 
                     int idAluno = banco.buscarIdPorNome(nomeAluno);
                     Aluno aluno;
                     if (idAluno == -1) {
-                        // cria novo aluno
-                        aluno = new Aluno(nomeAluno);
+                        System.out.print("Digite o curso do aluno: ");
+                        String cursoAluno = scam_notas.nextLine();
+
+                        aluno = new Aluno(nomeAluno, cursoAluno);
                         idAluno = banco.cadastrarAluno(aluno);
-                        System.out.println("Aluno criado com ID: " + idAluno);
+
+                        System.out.println("Aluno criado com ID: " + (idAluno + 1));
                     } else {
                         aluno = banco.buscarPorId(idAluno);
                     }
@@ -253,33 +270,41 @@ public class Cadastro_notas { // classe pública principal do arquivo
                         disc.adicionarNota(n);
                     }
 
-                    System.out.println("Disciplina e suas notas adicionadas ao aluno ID " + idAluno);
+                    System.out.println("Disciplina e suas notas adicionadas ao aluno ID " + (idAluno + 1));
+                    Thread.sleep(1000);
                     break;
 
                 case 2: // listar boletim de um aluno e aplicar regras
+                    System.out.println("Abrindo menu de boletim...");
+                    Thread.sleep(1000);
                     if (banco.listar().isEmpty()) {
                         System.out.println("\n=== NENHUM ALUNO CADASTRADO ===");
+                        Thread.sleep(1000);
                         break;
                     }
 
                     System.out.print("Digite o nome do aluno para visualizar o boletim: ");
                     String busca = scam_notas.nextLine();
+                    System.out.println("\nLendo nome...");
+                    Thread.sleep(1000);
 
                     int buscaId = banco.buscarIdPorNome(busca);
                     if (buscaId == -1) {
-                        System.out.println("--- ALUNO NÃO ENCONTRADO ---");
+                        System.out.println("\n--- ALUNO NÃO ENCONTRADO ---");
+                        Thread.sleep(1000);
                         break;
                     }
 
                     Aluno a = banco.buscarPorId(buscaId);
 
-                    System.out.println("\n--- BOLETIM: " + a.getNome().toUpperCase() + " (ID " + buscaId + ") ---");
+                    System.out
+                            .println("\n--- BOLETIM: " + a.getNome().toUpperCase() + " (ID " + (buscaId + 1) + ") ---");
                     System.out.println("ID  | DISCIPLINA          | MÉDIA DA DISCIPLINA | NOTAS (avaliacoes)");
 
                     for (int i = 0; i < a.getDisciplinas().size(); i++) {
                         Disciplina d = a.getDisciplinas().get(i);
                         System.out.printf("%-3d | %-20s | %-18.2f | ",
-                                i, d.getNome(), d.calcularMediaDisciplina());
+                                (i + 1), d.getNome(), d.calcularMediaDisciplina());
                         // exibe notas individuais entre colchetes
                         System.out.print("[");
                         for (int j = 0; j < d.getNotas().size(); j++) {
@@ -326,6 +351,8 @@ public class Cadastro_notas { // classe pública principal do arquivo
                             if (resp.equalsIgnoreCase("s")) {
                                 System.out.print("Digite o ID da disciplina a alterar: ");
                                 int idDisc = scam_notas.nextInt();
+                                System.out.println("\nLendo ID...");
+                                Thread.sleep(1000);
                                 scam_notas.nextLine();
 
                                 if (idDisc >= 0 && idDisc < a.getDisciplinas().size()) {
@@ -340,6 +367,8 @@ public class Cadastro_notas { // classe pública principal do arquivo
                                     System.out.print("Digite o número (índice) da nota que deseja alterar: ");
                                     int idNota = scam_notas.nextInt();
                                     scam_notas.nextLine();
+                                    System.out.println("Lendo índice...");
+                                    Thread.sleep(1000);
 
                                     if (idNota >= 0 && idNota < d.getNotas().size()) {
                                         System.out.print("Nova nota: ");
@@ -347,6 +376,7 @@ public class Cadastro_notas { // classe pública principal do arquivo
                                         scam_notas.nextLine();
                                         d.setNota(idNota, nova);
                                         System.out.println("Nota alterada com sucesso.");
+                                        Thread.sleep(1000);
 
                                         // mostrar nova média e situação atualizada
                                         double novaMediaDisc = d.calcularMediaDisciplina();
@@ -376,19 +406,25 @@ public class Cadastro_notas { // classe pública principal do arquivo
                     break;
 
                 case 3: // listar todos os alunos com seus IDs
+                    System.out.println("Buscando cadastros...");
+                    Thread.sleep(1000);
                     ArrayList<Aluno> todos = banco.listar();
                     if (todos.isEmpty()) {
                         System.out.println("\n=== NENHUM ALUNO CADASTRADO ===");
+                        Thread.sleep(1000);
                     } else {
                         System.out.println("\n--- ALUNOS CADASTRADOS ---");
                         System.out.println("ID | NOME");
                         for (int i = 0; i < todos.size(); i++) {
-                            System.out.print(String.format("%-2d | %s\n", i, todos.get(i).getNome()));
+                            System.out.print(String.format("%-2d | %s\n", (i + 1), todos.get(i).getNome()));
                         }
                     }
+                    Thread.sleep(1000);
                     break;
 
                 case 4:
+                    System.out.println("\nAbrindo menu de exclusão...");
+                    Thread.sleep(1000);
                     System.out.print(
                             "\n/-/-/- REMOVER DADOS -/-/-/\n" +
                                     "1 - Remover DISCIPLINA inteira de um aluno\n" +
@@ -399,10 +435,13 @@ public class Cadastro_notas { // classe pública principal do arquivo
 
                     System.out.print("Nome do aluno: ");
                     String nomeRemove = scam_notas.nextLine();
+                    System.out.println("Lendo nome...");
+                    Thread.sleep(1000);
 
                     int idRemove = banco.buscarIdPorNome(nomeRemove);
                     if (idRemove == -1) {
                         System.out.println("\n === ALUNO NÃO ENCONTRADO ===");
+                        Thread.sleep(1000);
                         break;
                     }
 
@@ -413,6 +452,7 @@ public class Cadastro_notas { // classe pública principal do arquivo
                         case 1: // remover disciplina inteira
                             if (alunoR.getDisciplinas().isEmpty()) {
                                 System.out.println("Este aluno não possui disciplinas cadastradas.");
+                                Thread.sleep(1000);
                                 break;
                             }
 
@@ -424,6 +464,7 @@ public class Cadastro_notas { // classe pública principal do arquivo
                             System.out.print("Digite o código (ID) da disciplina: ");
                             int idDiscRem = scam_notas.nextInt();
                             scam_notas.nextLine();
+                            Thread.sleep(1000);
 
                             if (idDiscRem < 0 || idDiscRem >= alunoR.getDisciplinas().size()) {
                                 System.out.println("ID inválido!");
@@ -433,11 +474,13 @@ public class Cadastro_notas { // classe pública principal do arquivo
                             // Remove a disciplina
                             alunoR.getDisciplinas().remove(idDiscRem);
                             System.out.println("\n === DISCIPLINA REMOVIDA COM SUCESSO ===");
+                            Thread.sleep(1000);
 
                             // SE o aluno não tem mais disciplinas → remover o aluno inteiro
                             if (alunoR.getDisciplinas().isEmpty()) {
                                 System.out.println("\nO aluno '" + alunoR.getNome() + "' não possui mais disciplinas.");
                                 System.out.println("\n --- REMOVENDO OS DADOS DO ALUNO... ---");
+                                Thread.sleep(1000);
 
                                 // Remover aluno do banco
                                 banco.listar().remove(idRemove);
@@ -450,36 +493,43 @@ public class Cadastro_notas { // classe pública principal do arquivo
                                 }
 
                                 System.out.println("\n --- ALUNO REMOVIDO COM SUCESSO ---");
+                                Thread.sleep(1000);
                             }
 
                             break;
 
                         case 2: // remover nota específica
                             removerNotaEspecifica(alunoR, scam_notas);
+                            Thread.sleep(1000);
                             break;
 
                         default:
                             System.out.println("\n === OPÇÃO INVÁLIDA ===");
+                            Thread.sleep(1000);
                     }
 
                     break;
 
                 case 5:
                     System.out.println("SAINDO...");
+                    Thread.sleep(1000);
                     break;
 
                 default:
                     System.out.println("\n === OPÇÃO INVÁLIDA ===");
+                    Thread.sleep(1000);
+                    break;
             }
         }
 
     }
 
     // dentro da classe Cadastro_notas, fora de qualquer outro método
-    public static void removerNotaEspecifica(Aluno aluno, Scanner scam_notas) {
+    public static void removerNotaEspecifica(Aluno aluno, Scanner scam_notas) throws InterruptedException {
 
         if (aluno.getDisciplinas().isEmpty()) {
             System.out.println("\n--- ESTE ALUNO NÃO POSSUI DISCIPLINAS CADASTRADAS ---");
+            Thread.sleep(1000);
             return;
         }
 
@@ -494,6 +544,7 @@ public class Cadastro_notas { // classe pública principal do arquivo
 
         if (idDisc < 0 || idDisc >= aluno.getDisciplinas().size()) {
             System.out.println("\n--- ID INVÁLIDO ---");
+            Thread.sleep(1000);
             return;
         }
 
@@ -501,6 +552,7 @@ public class Cadastro_notas { // classe pública principal do arquivo
 
         if (d.getNotas().isEmpty()) {
             System.out.println("\n=== ESTA DISCIPLINA NÃO POSSUI NOTAS CADASTRADAS ===");
+            Thread.sleep(1000);
             return;
         }
 
@@ -512,14 +564,18 @@ public class Cadastro_notas { // classe pública principal do arquivo
         System.out.print("Digite o índice da nota que deseja remover: ");
         int idNota = scam_notas.nextInt();
         scam_notas.nextLine();
+        System.out.println("Lendo índice...");
+        Thread.sleep(1000);
 
         if (idNota < 0 || idNota >= d.getNotas().size()) {
             System.out.println("--- ÍNDICE DE NOTA INVÁLIDO ---");
+            Thread.sleep(1000);
             return;
         }
 
         d.getNotas().remove(idNota);
         System.out.println("\n=== NOTA REMOVIDA COM SUCESSO! ===");
+        Thread.sleep(1000);
     }
 
 }

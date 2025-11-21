@@ -31,6 +31,7 @@ public class Menu_relatorio {
                 case 3:
                     System.out.println("Buscando...");
                     Thread.sleep(1000);
+                    Relatorio.gerarRelatorioPorAluno();
                     break;
                 case 4:
                     System.out.println("Saindo...");

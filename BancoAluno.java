@@ -25,7 +25,7 @@ public class BancoAluno {
         System.out.println("\n==== ALUNOS CADASTRADOS ====");
 
         if (nomesUnicos.isEmpty()) {
-            System.out.println("NENHUM ALUNO CADASTRADO!");
+            System.out.println("\nNENHUM ALUNO CADASTRADO!");
         } else {
             for (String nome : nomesUnicos) {
                 System.out.println("- " + nome);

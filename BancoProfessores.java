@@ -6,21 +6,17 @@ public class BancoProfessores {
     public static void gerar_profesores() {
 
         ArrayList<String> nomesProfs = Cadastro_professor.getNomesProfessores();
+        Set<String> semrepetir = new HashSet<>(nomesProfs);
 
-        Set<String> semrepetir = new HashSet<>();
-        semrepetir.addAll(nomesProfs);
-        
         System.out.println("\n=== PROFESSORES CADASTRADOS ===");
-        for (String p : semrepetir) {
-            System.out.println("- " + p);
-        }
 
         if (semrepetir.isEmpty()) {
-            System.out.println("NENHUM PROFESSOR CADASTRADO!");
-        } else {
-            for (String prof : semrepetir) {
-                System.out.println("- " + prof);
-            }
+            System.out.println("\nNENHUM PROFESSOR CADASTRADO!");
+            return;
+        }
+
+        for (String p : semrepetir) {
+            System.out.println("- " + p);
         }
     }
 }

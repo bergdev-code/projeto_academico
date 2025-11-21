@@ -12,12 +12,10 @@ public class Confirmar_saida {
             if (sair_verificar.equalsIgnoreCase("s")) {
                 System.out.println("Saindo para o menu de cadastros...");
                 return "s"; // retorna para quem chamou
-            } 
-            else if (sair_verificar.equalsIgnoreCase("n")) {
+            } else if (sair_verificar.equalsIgnoreCase("n")) {
                 System.out.println("Voltando...");
                 return "n";
-            } 
-            else {
+            } else {
                 System.out.println("Insira um caractere válido!");
             }
         }
