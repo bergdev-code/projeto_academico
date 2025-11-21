@@ -1,6 +1,11 @@
+package bancos;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
+
+import cadastros.Cadastro_disciplinas;
+import cadastros.Cadastro_notas;
+import cadastros.Cadastro_professor;
 
 public class BancoUc {
     public static void gerar_uc() {

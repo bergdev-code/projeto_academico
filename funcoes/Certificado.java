@@ -1,7 +1,11 @@
+package funcoes;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import cadastros.Cadastro_aluno;
+import cadastros.Cadastro_notas;
 
 public class Certificado {
 

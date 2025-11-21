@@ -1,5 +1,9 @@
 import java.util.Scanner;
 
+import funcoes.Certificado;
+import menus.Menu_da_main;
+import menus.Menu_relatorio;
+
 public class Main {
     public static void main(String[] args) throws InterruptedException {
         Scanner scam_main = new Scanner(System.in);

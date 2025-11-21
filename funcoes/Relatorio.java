@@ -1,5 +1,8 @@
+package funcoes;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import cadastros.Cadastro_notas;
 
 public class Relatorio {
 

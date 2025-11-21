@@ -1,3 +1,4 @@
+package cadastros;
 
 // Cadastro_de_Notas.java - Michelle
 import java.util.ArrayList; // importa ArrayList para armazenar listas
@@ -70,7 +71,7 @@ public class Cadastro_notas { // classe pública principal do arquivo
     }
 
     // ------------------- CLASSE Disciplina --------------------
-    static class Disciplina { // representa uma disciplina com várias notas
+    public static class Disciplina { // representa uma disciplina com várias notas
         private String nome; // nome da disciplina
         private ArrayList<Double> notas = new ArrayList<>(); // notas dessa disciplina
 

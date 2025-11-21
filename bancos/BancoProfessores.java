@@ -1,6 +1,9 @@
+package bancos;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
+
+import cadastros.Cadastro_professor;
 
 public class BancoProfessores {
     public static void gerar_profesores() {

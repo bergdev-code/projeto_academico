@@ -1,6 +1,10 @@
+package bancos;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
+
+import cadastros.Cadastro_aluno;
+import cadastros.Cadastro_notas;
 
 public class BancoAluno {
     public static void bancodoaluno() {

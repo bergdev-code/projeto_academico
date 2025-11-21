@@ -1,6 +1,11 @@
+package bancos;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
+
+import cadastros.Cadastro_aluno;
+import cadastros.Cadastro_curso;
+import cadastros.Cadastro_professor;
 
 public class BancoCursos {
     public static void gerar_cursos() {

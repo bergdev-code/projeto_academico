@@ -1,7 +1,10 @@
+package cadastros;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+
+import funcoes.Confirmar_saida;
 
 public class Cadastro_curso {
 

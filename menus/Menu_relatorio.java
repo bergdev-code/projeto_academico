@@ -1,4 +1,13 @@
+package menus;
 import java.util.Scanner;
+
+import bancos.BancoAluno;
+import bancos.BancoCursos;
+import bancos.BancoProfessores;
+import bancos.BancoUc;
+import cadastros.Cadastro_aluno;
+import cadastros.Cadastro_notas;
+import funcoes.Relatorio;
 
 public class Menu_relatorio {
     public static void gerar_relatorio() throws InterruptedException {

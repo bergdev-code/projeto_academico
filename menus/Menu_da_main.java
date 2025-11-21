@@ -1,4 +1,11 @@
+package menus;
 import java.util.Scanner;
+
+import cadastros.Cadastro_aluno;
+import cadastros.Cadastro_curso;
+import cadastros.Cadastro_disciplinas;
+import cadastros.Cadastro_notas;
+import cadastros.Cadastro_professor;
 
 public class Menu_da_main {
     public static void Menu_main() throws InterruptedException {
