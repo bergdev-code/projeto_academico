@@ -1,4 +1,5 @@
 package cadastros;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -116,7 +117,7 @@ public class Cadastro_curso {
                 case 4:
                     System.out.println("Voltando para o menu de cadastros...");
                     Thread.sleep(1000);
-
+                    ficar_menu = false;
                     break;
 
                 default:
